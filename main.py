@@ -27,3 +27,13 @@ while True:
     escolha = escolha_usuario(escolha)
     if escolha is None:
         continue
+    elif escolha == 5:
+        break
+    elif escolha == 1:
+        pass
+    elif escolha == 2:
+        pass
+    elif escolha == 3:
+        pass 
+    else:
+        pass
