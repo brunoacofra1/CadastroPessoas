@@ -13,7 +13,13 @@ def escolha_usuario(escolha):
         print(f"[Erro] Você nao digitou um numero ")
         input('Aperte ENTER Para tentar novamente...')
         return None
-
+def verifica_nome(nome)-> str:
+    while True:
+        if nome != "":
+            return nome
+        print("nome Invalido!!!!! - Digite outro")
+        nome = input("Digite o Nome: ").strip()     
+        
 while True:
     print("/------------------------------------------")
     print("|1 - Cadastrar pessoas                    |")
@@ -30,7 +36,10 @@ while True:
     elif escolha == 5:
         break
     elif escolha == 1:
-        pass
+        nome = input("Digite um nome: ").strip()
+        nome = verifica_nome(nome)
+        peso = input("Digite o peso: ").strip()
+        altura = input("Digite a altura: ").strip()
     elif escolha == 2:
         pass
     elif escolha == 3:
