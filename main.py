@@ -1,4 +1,6 @@
 import conexion 
+import funcoes
+fun = funcoes
 con = conexion.Conexion()
 con.criar_banco()
 def escolha_usuario(escolha):
@@ -13,13 +15,7 @@ def escolha_usuario(escolha):
         print(f"[Erro] Você nao digitou um numero ")
         input('Aperte ENTER Para tentar novamente...')
         return None
-def verifica_nome(nome)-> str:
-    while True:
-        if nome != "":
-            return nome
-        print("nome Invalido!!!!! - Digite outro")
-        nome = input("Digite o Nome: ").strip()     
-        
+   
 while True:
     print("/------------------------------------------")
     print("|1 - Cadastrar pessoas                    |")
@@ -37,9 +33,11 @@ while True:
         break
     elif escolha == 1:
         nome = input("Digite um nome: ").strip()
-        nome = verifica_nome(nome)
+        nome = fun.verifica_nome(nome)
         peso = input("Digite o peso: ").strip()
+        peso = fun.verifica_peso(peso)
         altura = input("Digite a altura: ").strip()
+        altura = fun.verifica_altura(altura)
     elif escolha == 2:
         pass
     elif escolha == 3:
