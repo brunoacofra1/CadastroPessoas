@@ -7,7 +7,7 @@ def escolha_usuario(escolha):
     try: 
         escolha = int(escolha)
         if not 1<= escolha <= 5 :
-            print(f"[Erro] Você digitou um numero porem fora das opções")
+            print(f"[Erro] Você digitou um numero ({escolha})porem fora das opções")
             input('Aperte ENTER Para tentar novamente...')
             return None
         return escolha
@@ -17,19 +17,17 @@ def escolha_usuario(escolha):
         return None
    
 while True:
-    print("/------------------------------------------")
+    print("/-------------------Menu-------------------")
     print("|1 - Cadastrar pessoas                    |")
     print("|2 - Ver cadastros                        |")
-    print("|3 - Excluir cadastros                    |")
-    print("|4 - Editar cadastros                     |")
-    print("|5 - Encerrar                             |")
+    print("|3 - Encerrar                             |")
     print("------------------------------------------/")
 
     escolha = input("Digite a opção que deseja: ").strip()
     escolha = escolha_usuario(escolha)
     if escolha is None:
         continue
-    elif escolha == 5:
+    elif escolha == 3:
         break
     elif escolha == 1:
         nome = input("Digite um nome: ").strip()
@@ -38,9 +36,14 @@ while True:
         peso = fun.verifica_peso(peso)
         altura = input("Digite a altura: ").strip()
         altura = fun.verifica_altura(altura)
+        con.cadastrar_pessoas(nome,peso,altura)
     elif escolha == 2:
-        pass
-    elif escolha == 3:
-        pass 
+        print("/------------------Cadastros------------------------")
+        print("")
+        print(f"| {'CODIGO':^8} | {'NOME':^13} | {'ALTURA':^8} | {'PESO':^8} |")
+        con.ver_pessoas()
+        print("")
+        print("---------------------------------------------------/")
+        input("Pressione ENTER para voltar ao menu...")
     else:
         pass

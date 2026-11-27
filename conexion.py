@@ -50,4 +50,31 @@ class Conexion:
         if self.conn:
             self.conn.close()
             self.conn = None
-
+    def cadastrar_pessoas(self,nome,peso,altura)->bool:
+        try:
+            with self.conn.cursor() as cursor:
+                sql = "INSERT INTO cadastros (cad_nome,cad_altura,cad_peso) VALUES(%s,%s,%s)"
+                cursor.execute(sql,(nome,altura,peso))
+                self.conn.commit()
+                return True
+        except pymysql.Error as e:
+            print(f"[Erro] não foi possivel fazer o cadastro {e}")
+            return False
+    def listar(self,resultado):  
+        for pessoa in resultado:
+            print(f"|{pessoa['cad_codigo']:^10}"
+                f"|{pessoa['cad_nome']:^15}"
+                f"|{pessoa['cad_altura']:^10}"
+                f"|{pessoa['cad_peso']:^10}|")
+        print(f"Total cadastros: {pessoa['totalcadastros']}")  
+    def ver_pessoas(self):
+        try:
+            with self.conn.cursor(pymysql.cursors.DictCursor) as cursor:
+                sql = "SELECT *,COUNT(cad_codigo) OVER() AS totalcadastros FROM cadastros"
+                cursor.execute(sql)
+                resultado = cursor.fetchall()
+                self.listar(resultado)
+        except pymysql.error as e:
+            print(f"[Erro ] não foi possivel, {e}")
+            return None
+    
